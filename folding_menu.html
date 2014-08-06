@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- folding_menu.html -->
+<html>
+    <meta charset="utf-8">
+    <head>
+        <title>Folding Game</title>
+        <script src="http://d3js.org/d3.v2.min.js"></script>
+        <link href=styles.css media="all" rel="stylesheet" type="text/css"></script>
+        <script src=folding_menus.js></script>
+        <script src=folding_game.js></script>
+    </head>
+
+    <body>
+        <!--  define the sound bits needed -->
+        <audio id="wrongSound">
+          <source src="audio/wrong.wav" type="audio/wav" />
+        </audio>
+        <audio id="correctSound">
+          <source src="audio/correct.wav" type="audio/wav" />
+        </audio>
+        <audio id="completeSound">
+          <source src="audio/fanfare.wav" type="audio/wav" />
+        </audio>
+<!--
+        <input type="range" min="1" max="2" id="tetraSlider">
+        <input type="range" min="1" max="2" id="cubeSlider">
+        <input type="range" min="1" max="2" id="octaSlider">
+        <input type="range" min="1" max="2" id="dodecaSlider">
+        <input type="range" min="1" max="2" id="icosaSlider">
+-->
+        <script>
+            initFoldingMenu();
+        </script>
+    </body>
+
+
+</html>

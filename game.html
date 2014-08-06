@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<title>Folding Game</title>
+<!-- <script src="d3.v2.min.js"></script> -->
+<script src="http://d3js.org/d3.v2.min.js"></script>
+<!-- <script src="jquery-1.8.3.min.js"></script> -->
+<style>
+
+.body {
+  font: 13px sans-serif;
+  position: relative;
+  width: 960px;
+  height: 500px;
+}
+
+.node {
+  fill: #000;
+  cursor: crosshair;
+}
+
+.node_selected {
+  fill: #ff7f0e;
+  stroke: #ff7f0e;
+}
+
+.drag_line {
+  stroke: #999;
+  stroke-width: 5;
+  pointer-events: none;
+}
+
+.drag_line_hidden {
+  stroke: #999;
+  stroke-width: 0;
+  pointer-events: none;
+}
+
+.link {
+  stroke: #999;
+  stroke-width: 5;
+  cursor: crosshair;
+}
+
+.link_selected {
+  stroke: #ff7f0e;
+}
+
+.link_correct {
+  stroke: #01DF01;
+}
+.link_wrong {
+  stroke: #DF0101;
+}
+
+.polygon{
+    stroke-width: 2.5;
+    stroke:steelblue;
+    fill:none;
+    stroke-linejoin:round;
+}
+
+</style>
+<head>
+<body>
+  <div id="chart">
+  </div>
+<!-- script src="game_menu.js"></script> -->
+<script src="folding_game.js"></script>
+<script>
+    FoldingGame("", 0);
+</script>
+</body>
+</html>
