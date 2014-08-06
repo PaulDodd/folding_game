@@ -3,6 +3,20 @@
 var shapeString = "",
     netid = 0;
 
+function NextNet()
+{
+    netid++;
+    if(netid <= getMaxNetId(shapeString) ){
+        console.log("going to ", shapeString + netid);
+        removeGame();
+        FoldingGame(shapeString, netid);
+    }
+    else
+    {
+        console.log("maxed out")
+    }
+}
+
 function initFoldingMenu()
 {
     var width = 1400,
@@ -180,69 +194,74 @@ function initFoldingMenu()
         .style("top", pos+6+"px")
         .style("right", rightPos-offset-3.5*stringlen+"px")
         .text(strText);
+
+
     // Game menu
-        // todo.
-    // End game menu.
-//     var widthEnd = 500,
-//         heightEnd = 300;
-//     var outerEnd = d3.select("body")//.append("div").attr("class", "endMenus")
-//         .append("svg")
-//         .attr("class", "endMenuSVG")
-//         .attr("width", widthEnd)
-//         .attr("height", heightEnd)  // pass these in later.
-//         //.attr("viewBox", Math.round((width-widthEnd)/2)+" "+10+" "+widthEnd+" "+heightEnd)
-//         .attr("pointer-events", "all")
-//         .attr("style", "background-color: #707070")
-//         .attr("top", 10+"px")
-//         .attr("right", Math.round((width-widthEnd))+"px")
+    d3.select("body").append("div").attr("class", "gameMenuTopBar")
 
-
-
-//     var visEnd = outerEnd.append('svg:g');
-
-//     visEnd.append('svg:rect')
-//         .attr("id", "endSVGMenu")
-//         .attr('width', widthEnd*0.98)
-//         .attr('height', heightEnd*0.98)
-//         .attr('fill', '#4682B4');
-
-//     outerEnd.style("visibility", "hidden");
-//     visEnd.style("visibility", "hidden");
-    d3.select("body").append("div").attr("class", "gameMenuBox")
-    d3.select(".gameMenuBox").append("div").attr("class", "gameMenuBoxItem").attr("id", "endBox").text("next net >")
+    d3.select(".gameMenuTopBar").append("div")
+        .attr("class", "gameMenuItem")
+        .attr("id", "restartButton")
+        .text("Prev Net")
+        .on("mouseover", function() {
+                         d3.select(this).style("color", "#E83C44")})
+        .on("mouseout", function() {
+                         d3.select(this).style("color", "#FFFFFF")})
         .on("click", function() {
+                         NextNet(); });
 
-            netid++;
-            if(netid <= getMaxNetId(shapeString) ){
-                console.log("going to ", shapeString + netid);
-                FoldingGame(shapeString, netid);
-            }
-            else
-            {
-                console.log("maxed out")
-            }
-        }).on("mouseover", function() {
-            d3.select(this).style("color", "#FFD452")
-        }).on("mouseout", function() {
-            d3.select(this).style("color", "white")
-        })
-    d3.selectAll(".gameMenuBox").style("visibility", "hidden");
+    d3.select(".gameMenuTopBar").append("div")
+        .attr("class", "gameMenuItem")
+        .attr("id", "restartButton")
+        .text("Main Menu")
+        .on("mouseover", function() {
+                         d3.select(this).style("color", "#E83C44")})
+        .on("mouseout", function() {
+                         d3.select(this).style("color", "#FFFFFF")})
+        .on("click", function() {
+                         window.location.href="folding_menu.html"; });
+
+    d3.select(".gameMenuTopBar").append("div")
+        .attr("class", "gameMenuItem")
+        .attr("id", "restartButton")
+        .text("Next Net")
+        .on("mouseover", function() {
+                         d3.select(this).style("color", "#E83C44")})
+        .on("mouseout", function() {
+                         d3.select(this).style("color", "#FFFFFF")})
+        .on("click", function() {
+                         NextNet(); });
+
+
+
+    d3.select(".gameMenuTopBar").style("visibility", "hidden");
+    d3.selectAll(".gameMenuItem").style("visibility", "hidden");
+
+    d3.select("body").append("div").attr("id", "gameCounter");
+    d3.select("#gameCounter").append("div")
+        .attr("class", "gameCounterText")
+        .attr("id", "gameCounterText1")
+        .style("top", "100px")
+        .style("left", "50px")
+        .text("edges left")
+
+    d3.select("#gameCounter").append("div")
+        .attr("class", "gameCounterNumber")
+        .attr("id", "gameCounterNumber1")
+        .style("top", "130px")
+        .style("left", "95px")
+        .text("0")
+
+    d3.select("#gameCounter").style("visibility", "hidden");
+
+    // End game menu.
     d3.select("body").append("div").attr("class", "gameMenuBoxEx")
 
     d3.select(".gameMenuBoxEx").append("div").attr("class", "gameMenuBoxExCompletedText").attr("id", "messgage").text("Level Complete!");
     d3.select(".gameMenuBoxEx").append("div").attr("class", "gameMenuBoxExText").attr("id", "messgage").text("Well done foldster! You figured out which edges to glue together to make the shape fold.");
     d3.select(".gameMenuBoxEx").append("div").attr("class", "gameMenuBoxItem").attr("id", "nextNetOption").text("< try another >")
         .on("click", function() {
-
-            netid++;
-            if(netid <= getMaxNetId(shapeString) ){
-                console.log("going to ", shapeString + netid);
-                FoldingGame(shapeString, netid);
-            }
-            else
-            {
-                console.log("maxed out")
-            }
+            NextNet();
         }).on("mouseover", function() {
             d3.select(this).style("color", "#E83C44")
         }).on("mouseout", function() {
@@ -271,12 +290,22 @@ function removeFoldingMenu()
     d3.selectAll(".shapeOption").remove();
 }
 
-function initGameEndMenu() {
-    console.log("init end game menus");
-    // hide all game menus.
+function removeGameItems()
+{
     d3.select(".gameSVG").select("g").selectAll(".node").remove();
     d3.select(".gameSVG").select("g").selectAll(".link").remove();
     d3.select(".gameSVG").select("g").selectAll(".polygon").remove();
+    d3.selectAll(".gameMenuTopBar").style("visibility", "hidden");
+    d3.selectAll(".gameMenuItem").style("visibility", "hidden");
+    d3.select("#gameCounter").style("visibility", "hidden");
+    d3.select("#gameCounterText1").style("visibility", "hidden");
+    d3.select("#gameCounterNumber1").style("visibility", "hidden");
+}
+
+function initGameEndMenu() {
+    console.log("init end game menus");
+    // hide all game menus.
+    removeGameItems();
     // show all end menus
     d3.selectAll(".gameMenuBoxItem").style("visibility", "visible");
     d3.selectAll(".gameMenuBoxExCompletedText").style("visibility", "visible");

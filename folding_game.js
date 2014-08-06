@@ -7,8 +7,13 @@
 var bInit = false;
 function initGame()
 {
+    removeGameItems();
     // Add any other elements here.
-    d3.selectAll(".gameMenuBox").style("visibility", "visible");
+    d3.selectAll(".gameMenuTopBar").style("visibility", "visible");
+    d3.selectAll(".gameMenuItem").style("visibility", "visible");
+    d3.select("#gameCounterText1").style("visibility", "visible");
+    d3.select("#gameCounterNumber1").style("visibility", "visible");
+
     d3.selectAll(".gameMenuBoxItem").style("visibility", "hidden");
     d3.selectAll(".gameMenuBoxExCompletedText").style("visibility", "hidden");
     d3.selectAll(".gameMenuBoxExText").style("visibility", "hidden");
@@ -38,10 +43,10 @@ function FoldingGame(Polyhedron, number){
     var response = null;
     var width = 1400,
         height = 800,
-        innerWidth = 800,
-        innerHeight = 500,
-        scale = 100,
-        center = [innerWidth/2, innerHeight/2],
+        innerWidth =width,//= 800,
+        innerHeight =height,//= 500,
+        scale = 150,
+        center = [innerWidth*0.25, innerHeight*0.33],
         fill = d3.scale.category20(),
         correct_edges = [],
         bGameOver = false;
@@ -405,6 +410,12 @@ function redraw() {
   if (d3.event) {
     // prevent browser's default behavior
     d3.event.preventDefault();
+  }
+
+
+  if(!remove_link)
+  {
+      d3.select("#gameCounterNumber1").text(String(correct_edges.length - links.length));
   }
 
   force.start();
