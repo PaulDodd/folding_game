@@ -22,6 +22,13 @@
   stroke: #ff7f0e;
 }
 
+.labels {
+  pointer-events: none;
+  font-family: "Helvetica Neue";
+  font-size: 26px;
+  font-weight: 100
+}
+
 .drag_line {
   stroke: #999;
   stroke-width: 5;

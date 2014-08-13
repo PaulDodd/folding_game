@@ -8,22 +8,43 @@ var bInit = false;
 function initGame()
 {
     removeGameItems();
+    d3.selectAll(".gameMenuBoxItem").style("visibility", "hidden");
+    d3.selectAll(".gameMenuBoxExCompletedText").style("visibility", "hidden");
+    d3.selectAll(".gameMenuBoxExText").style("visibility", "hidden");
+    d3.selectAll(".gameMenuBoxEx").style("visibility", "hidden");
+
     // Add any other elements here.
     d3.selectAll(".gameMenuTopBar").style("visibility", "visible");
     d3.selectAll(".gameMenuItem").style("visibility", "visible");
     d3.select("#gameCounterText1").style("visibility", "visible");
     d3.select("#gameCounterNumber1").style("visibility", "visible");
 
-    d3.selectAll(".gameMenuBoxItem").style("visibility", "hidden");
-    d3.selectAll(".gameMenuBoxExCompletedText").style("visibility", "hidden");
-    d3.selectAll(".gameMenuBoxExText").style("visibility", "hidden");
-    d3.selectAll(".gameMenuBoxEx").style("visibility", "hidden");
+
 }
 
 function removeGame()
 {
     d3.select(".gameSVG").remove();
     bInit = false;
+}
+
+function ChooseScale(poly)
+{
+    if(poly == "Tetrahedron")
+    {
+        return 150;
+    }
+        if(poly == "Cube")
+    {
+        return 100;
+    }
+
+        if(poly == "Octahedron")
+    {
+        return 120;
+    }
+
+    return 100;
 }
 
 function FoldingGame(Polyhedron, number){
@@ -45,13 +66,14 @@ function FoldingGame(Polyhedron, number){
         height = 800,
         innerWidth =width,//= 800,
         innerHeight =height,//= 500,
-        scale = 150,
-        center = [innerWidth*0.25, innerHeight*0.33],
+        scale = ChooseScale(Polyhedron),
+        center = [innerWidth*0.25, innerHeight*0.5],
         fill = d3.scale.category20(),
         correct_edges = [],
         bGameOver = false;
 
     var file_url = "http://localhost:8000/data/"+Polyhedron+"Net"+number+".json";
+//     var file_url = "http://localhost:8000/data/test.json";
     response = AJAX_JSON_Req( file_url );
     if(response != null){
         console.log("Found net with", response.Faces.length, "faces");
@@ -179,6 +201,15 @@ function FoldingGame(Polyhedron, number){
         link = vis.selectAll(".link");
 
 
+//     var labels = vis.append("g")
+//         .attr("class", "labels")
+//         .selectAll("text")
+//         .data(nodes)
+//         .enter().append("text")
+//         .attr("dx", 12)
+//         .attr("dy", ".35em")
+//         .attr("transform", function(d){ console.log("translate("+ d.x +","+d.y+")"); return "translate("+ d.x +","+d.y+")"; })
+//         .text(function(d) { return d.id; });
 
     // add keyboard callback
     d3.select(window)
@@ -392,12 +423,6 @@ function redraw() {
             .ease("elastic")
             .attr("r", 6.5);
 
-    if(true){
-        node.append("text")
-        .attr("dx", 12)
-        .attr("dy", ".35em")
-        .text(function(d) { return d.id });
-    }
   node.exit().transition()
       .attr("r", 0)
     .remove();
