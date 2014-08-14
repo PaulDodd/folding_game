@@ -162,54 +162,54 @@ function initFoldingMenu()
         .style("right", rightPos-offset-3.5*stringlen+"px")
         .text(strText);
 
-//     // Dodecahedron Button
-//     pos += sep;
-//     d3.select(".menuOptions").append("div")
-//         .attr("class", "shapeOption")
-//         .attr("id", "dodecahedronButton")
-//         .style("top", pos+"px")
-//         .style("right", rightPos+"px")
-//         .text("Dodecahedron")
-//         .on("mouseover", function() {
-//                          d3.select(this).style("color", "#4682B4")})
-//         .on("mouseout", function() {
-//                          d3.select(this).style("color", "#707070")})
-//         .on("click", function() {
-//                          shapeString = "Dodecahedron";
-//                         FoldingGame(shapeString, netid); });
+    // Dodecahedron Button
+    pos += sep;
+    d3.select(".menuOptions").append("div")
+        .attr("class", "shapeOption")
+        .attr("id", "dodecahedronButton")
+        .style("top", pos+"px")
+        .style("right", rightPos+"px")
+        .text("Dodecahedron")
+        .on("mouseover", function() {
+                         d3.select(this).style("color", "#4682B4")})
+        .on("mouseout", function() {
+                         d3.select(this).style("color", "#707070")})
+        .on("click", function() {
+                         shapeString = "Dodecahedron";
+                        FoldingGame(shapeString, netid); });
 
-//     strText = "- 43,380 nets!";
-//     stringlen =strText.length;
-//     offset+=25;
-//     d3.select(".menuOptionsText").append("div")
-//         .attr("class", "shapeOptionText")
-//         .attr("id", "dodecahedronLabel")
-//         .style("top", pos+6+"px")
-//         .style("right", rightPos-offset-3.5*stringlen+"px")
-//         .text(strText);
+    strText = "- 43,380 nets!";
+    stringlen =strText.length;
+    offset+=25;
+    d3.select(".menuOptionsText").append("div")
+        .attr("class", "shapeOptionText")
+        .attr("id", "dodecahedronLabel")
+        .style("top", pos+6+"px")
+        .style("right", rightPos-offset-3.5*stringlen+"px")
+        .text(strText);
 
-//     // Icosahedron Button
-//     pos += sep;
-//     d3.select(".menuOptions").append("div")
-//         .attr("class", "shapeOption")
-//         .attr("id", "icosahedronButton")
-//         .style("top", pos+"px")
-//         .style("right", rightPos+"px")
-//         .text("Icosahedron")
-//         .on("mouseover", function() {
-//                          d3.select(this).style("color", "#4682B4")})
-//         .on("mouseout", function() {
-//                          d3.select(this).style("color", "#707070")})
-//         .on("click", function() {
-//                          shapeString = "Icosahedron";
-//                         FoldingGame(shapeString, netid); });
+    // Icosahedron Button
+    pos += sep;
+    d3.select(".menuOptions").append("div")
+        .attr("class", "shapeOption")
+        .attr("id", "icosahedronButton")
+        .style("top", pos+"px")
+        .style("right", rightPos+"px")
+        .text("Icosahedron")
+        .on("mouseover", function() {
+                         d3.select(this).style("color", "#4682B4")})
+        .on("mouseout", function() {
+                         d3.select(this).style("color", "#707070")})
+        .on("click", function() {
+                         shapeString = "Icosahedron";
+                        FoldingGame(shapeString, netid); });
 
-//     d3.select(".menuOptionsText").append("div")
-//         .attr("class", "shapeOptionText")
-//         .attr("id", "icosahedronLabel")
-//         .style("top", pos+6+"px")
-//         .style("right", rightPos-offset-3.5*stringlen+"px")
-//         .text(strText);
+    d3.select(".menuOptionsText").append("div")
+        .attr("class", "shapeOptionText")
+        .attr("id", "icosahedronLabel")
+        .style("top", pos+6+"px")
+        .style("right", rightPos-offset-3.5*stringlen+"px")
+        .text(strText);
 
 
     // Game menu
@@ -336,9 +336,9 @@ function getMaxNetId(shape)
     if(shape == "Tetrahedron")
         return 1;
     else if(shape == "Cube")
-        return 4;
+        return 10;
     else if(shape == "Octahedron")
-        return 4;
+        return 10;
     else if(shape == "Dodecahedron")
         return 43379;
     else if(shape == "Icosahedron")
