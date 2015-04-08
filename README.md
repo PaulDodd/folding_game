@@ -10,4 +10,4 @@ this is distributed under the creative [Creative Commons Attribution-ShareAlike 
 2. open a terminal
 3. cd /path/to/repo
 4. sh start.sh
-5. open a browserand enter http://localhost:8000/folding_menu.html
+5. open a browser and enter http://localhost:8000/folding_menu.html
